@@ -1,0 +1,452 @@
+자바 db 설정
+
+***자바 이클립스 JDK
+JDK (Java Development Kit) 자바를 이용한 개발키트
+jdk 11버전 11.0.13 - 이건 위치변경 안하고 저장
+
+C드라이브에 GDJ45폴더생성(수업에서 쓸거)
+폴더(installer)생성 - jdk이쪽으로 옮김
+
+****자바의 환경변수 등록
+시스템에게 java가 어디에 설치되어 있는지 알려준다.
+[제어판]-[시스템]-[고급시스템설정]
+1. JAVA_HOME 시스템 변수 등록
+   C:\Program Files\Java\jdk-11.0.13(경로)
+
+2. 등록된 시스템 변수를 Path에 추가
+    %JAVA_HOME%\bin
+    (실제path에 추가된 경로는 = C:\Program Files\Java\jdk-11.0.13\bin)
+    ->여기에 자바 실행에 필요한 모든 실행파일이 모여있다라는 의미.
+
+1. 제어판-시스템-고급시스템설정-고급-환경변수(아래 시스템변수만 사용)
+새로만들기-변수이름(JAVA_HOME)-디렉터리찾아보기(C드라이브-jdk폴더선택)(C:\Program Files\Java\jdk-11.0.13)
+2. 스크롤내려서 path변수 찾기-편집-새로만들기-%JAVA_HOME%\bin-맨위로 올리기
+
+
+
+****ide 통합개발환경 Intergrated Development Environment)
+코드작성 + 실행 + 디버겅 등 개발에 필요한 모든걸 지원하는 소프트웨어
+'이클립스', '인텔리제이' 등이 유명
+
+
+
+****이클립스 다운방법 사이트에서 다운로드 - 이클립스 !주의패키지클릭!
+오른쪽아래 2021-03(4.19)클릭
+Eclipse IDE for Enterprise Java and Web Developers 쓸거
+
+이클립스는 설치하지 않고 압축만 풀어서 바로 사용.
+installer폴더로 eclipse폴더 옮기기
+GDJ45폴더에 javastudy폴더 만들기
+eclipse실행 저장경로설정(javastudy)-실행(C:\GDJ45\javastudy)
+
+
+
+
+*****이클립스 실행 후 확인
+1. perspective (개발환경에 맞춰 보기와 메뉴 세팅)[Window] - [perspective]
+ 1) Java : Java
+ 2) JSP : Java EE
+
+2. View 확인
+  [Window]-[Show View]
+
+3. View가 망가지면(위치가) Perspective를 Reset
+
+4. Preference 설정(IDE 설정)
+  1) 테마 : 밝은/어두운
+  2) 글꼴 : 나눔/D2Coding
+    구글 - 나눔고딕코딩 (installer폴더에 font파일설치 후) - 젤 위에꺼 - ver2.5다운
+             D2Coding - 맨위 - ver1.3.2- (아래) D2Coding-Ver1.3.2-20180524.zip다운
+     설치법 D2는 all만 나눔은 둘다
+     마우스 우클릭 모든사용자용으로설치
+     window-preferences - general-appearance- (theme(테마))-colors and font-basic-text font-edit
+  3) 인코딩 : 한글처리를 위해(UTF-8=유니코드) (MS949=CP949 : ANSI 영문전용)
+    window-preferences - general-workspace -text file encoding-other -UTF-8
+
+
+
+****LOMBOK.JAR
+구글 - mvnrepository - 사이트 들어가기 - lombok검색 project lombok - 1.18.22 - files의 jar다운
+C:\GDJ45\installer\jar(폴더 만들어서 넣기)
+
+C:\GDJ45\installer\jar 경로로 저장
+
+
+Microsoft Windows [Version 10.0.19042.1466]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\p0m0q>cd
+
+C:\Users\p0m0q>cd C:\GDJ45\installer\jar
+
+C:\GDJ45\installer\jar>java -jar lombok-1.18.22.jar
+
+빨간고추 이클립스 설정
+
+프로젝트 추가후 빌드패스 - configure bulid path-  라이브러리 - ADD External jars - jar파일 설정
+
+
+
+
+
+****ORACLE DB
+oracla 다운로드 링크
+https://www.oracle.com/database/technologies/xe-prior-release-downloads.html -> 64bit
+developer 버전 (lite버전)
+설치 경로 바꾸지 말고 비밀번호는 1111로 통일
+
+
+프롬프터
+C:\Users\p0m0q>sqlplus
+
+SQL*Plus: Release 11.2.0.2.0 Production on 월 2월 21 09:41:01 2022
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+Enter user-name: SYSTEM
+Enter password: - >비번은 쳐도 안나옴
+
+Connected to:
+Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production
+
+SQL> SELECT * FROM V$VERSION; -> 버전확인
+
+BANNER
+--------------------------------------------------------------------------------
+Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production
+PL/SQL Release 11.2.0.2.0 - Production
+CORE    11.2.0.2.0      Production
+TNS for 64-bit Windows: Version 11.2.0.2.0 - Production
+NLSRTL Version 11.2.0.2.0 - Production
+
+SQL>
+
+
+환경변수
+ORACLE_HOME으로 등록
+경로 C:\oraclexe\app\oracle\product\11.2.0\server  
+PATH는 자동으로 되는데 그경로를 %ORACLE_HOME%으로 바꿔줌
+=> %ORACLE_HOME%\bin
+
+
+ORACLE DEVELOPER다운
+https://www.oracle.com/tools/downloads/sqldev-downloads-2041.html -> 64BIT의 자바 8,11필요한걸로
+압축풀어서 INSTALL폴더로
+EXE로 실행만 하기
+클릭해서 뭐 뜨면 아니요 누르기
+
+도구 - 환경설정
+Environment-인코딩 - UTF-8로 변경
+코드편집기 - 글꼴 - D2coding 
+행 여백 - 행번호 표시체크
+
+새접속 -  이름 적고 계정 SYSTEM, 비번 1111 테스트 ->성공 나와야 성공한거 - 비밀번호 저장
+
+
+CREATE USER SCOTT IDENTIFIED BY 1111;
+
+GRANT DBA TO SCOTT;
+
+
+
+C:\oraclexe\app\oracle\product\11.2.0\server\jdbc\lib ->에 있는 ojdbc6.jar파일 gdj45 jar폴더로 복사해서 옮기기
+
+
+
+*******JDBC
+ ojdbc6.jar  빌드패스 -> 라이브러리->클래스패스 -> add external으로 등록
+
+윈도우 -> show view -> other -> data management -> data source explorer -> open
+(*.sql 파일을 추가할 수 있는거임)
+그럼 옆에 data source explorer 창이뜸
+database connections->우클릭 -> new -> 오라클 선택
+-> NAME이 DATABASE CONNECTION에 등록되는 거 걍 그대로 써도됨
+-> next -> drivers옆에 삼각형말고 클릭
+-> name/type탭에 oracle thin driver 11버전 선택(2번째꺼)
+-> jar list탭 클릭 -> ojdbc14파일이 이미 있는데 그거 지워버림 remove 
+-> add jar -> 내 jar파일 선택 
+->properties 탭 -> userid SCOTT (대문자) -> PASSWORD 1111
+url jdbc:oracle:thin:@localhost:1521:xe
+database name xe
+-> ok눌러서 나감 ->  그럼 데이터가 다 들어가있음 -> test connection 클릭
+->ping succeeded면 성공한거 -> save password 체크 -> finish클릭
+
+
+쓸 프로젝트 src클릭하고 new - 아덜 -> sql developer sql file->이름 주고 확인
+status: dissconnected auto commit 상태임
+type -> oracle11   name -> new oracle(방금위에서 만든거) 그럼 status:connerted로 바뀜
+
+
+
+******vscode
+구글 검색 비쥬얼 스튜디오 코드
+메인에 다운로드 다운
+더블클릭 - 설치- 동의 - 설치 위치 변경x - 이름변경x
+-(기본 클릭된거 2개 그대로, 바탕화면 바로가기 클릭) - 설치
+-자동실행되서 켜짐
+-설정창 그냥꺼도됨
+- extensions클릭(왼쪽 사각형 4개같은거) - live server install하기
+-파일 - preferences - color theme에서 테마 설정 가능
+-파일 - preferences - setting - commonlty used - autosava는 기본으로 설정  안그러면 버벅거릴수도 자동 저장은 안됨.
+-font Family - D2Coding으로
+-c드라이브 gdj45폴더에 webstudy폴더 만들기 - 그안에HTML, CSS, JAVASCRIPT 폴더만들기
+-파일 - 오픈폴더 - WEBSTUDY선택 - 체크하고 예스
+
+*****jquery설치
+jquery.com접속
+메인 다운로드 클릭
+jQuery의 위는 전체 아래는 슬림버전 우리는 위에꺼 쓸거임
+For help when upgrading jQuery, please see the upgrade guide most relevant to your version. We also recommend using the jQuery Migrate plugin.
+이쪽 아래꺼 중
+상업버전은 Download the compressed, production jQuery 3.6.0
+개발할때는 Download the uncompressed, development jQuery 3.6.0를 사용
+이유는 용량차이
+개발버전은 줄바꿈이나 공백을 유지하고 있어서 편리
+Download the uncompressed, development jQuery 3.6.0 클릭 그럼 메모장 처럼 나옴
+우클릭 다른이름으로 저장
+GDJ45폴더에 웹스터디 - 자바 스크립트폴더 - 
+(C:\GDJ45\webstudy\JAVASCRIPT)
+vscode html문서 에 <script src="jquery-3.6.0.js"></script>(헤드영역에) (같은 폴더라 파일제목만 씀)
+여기까지 방법1
+
+방법2
+다시 다운로드 목록 창 - 밑으로 내려서 
+Using jQuery with a CDN 중에서 
+ https://code.jquery.com에서 원하는 cdn찾기 - (클릭해서 들어가기)
+우리가 아까 받은것과 같은 이름 찾기 (jQuery Core 3.6.0)
+ uncompressed(개발자버전), minified(상업버전),
+uncompressed 클릭하면 스크립트 태그가 나오고 복사키를 누른다.
+그걸 vscode html문서에 붙여넣기한다(헤드 영역에)
+
+
+
+
+****tomcat설치
+https://tomcat.apache.org/ 검색
+좌측에 다운로드메뉴에서 9버전으로 클릭 아래로 내리면
+9.0.62아래에
+Core버전 zip으로 받음(1번째)
+다운로드 파일을 gdj45 install로 가져와서 압축풀기
+
+(해당 폴더 안 폴더들 설명)
+bin 폴더
+(window : bat
+리눅스 : sh)
+startup.bat
+startup.sh
+시작시 필요 파일
+
+shutdown.bat
+shutdown.sh
+중지시 필요 파일  참고로 알아두기
+bin은 jar파일을 등록시키기도 함 우린 안할거
+
+conf폴더
+환경설정에 관련 내용들
+context.xml 파일
+server.xml 파일
+tomcat-user.xml 파일
+web.xml 파일
+나중에 수정해서 사용할 수 있음
+
+lib 폴더
+jar 파일 보관하는 폴더
+
+webapps 폴더 - ROOT폴더
+나 보통 webapps폴더에 전체 프로젝트 압축해서 넣음
+
+
+
+
+
+GDJ45폴더에 jspstudy폴더 하나 더 만들기
+이클립스 워크스페이스 바꾸기
+- 파일 -스위치 워크스페이스 (jspstudy) 그럼 세팅 다시 하게 웰컴창도 뜸
+
+window-genneral-appearance(테마변경)-열면 안에 color and font - basic클릭
+맨아래 text font - edit - d2coding(글꼴변경)
+genneral - workspace - text file encodin other - utf-8(인코딩)
+web-cssfile, htmlfile, jspfile - utf-8로 변경(인코딩)
+
+톰캣 추가
+(server - runtime environment 으로도 추가가능)
+
+이클립스 맨아래 서버 아래 링크 클릭 apach - 톰캣9로 선택 - 
+브라우저 클릭 내 폴더(톰캣) 선택
+그 다음은 걍 피니쉬
+아래 서버에 뜬 톰캣 마우스 우클릭 start 누르면 빨간 엑스표 창 뜸
+이유는 오라클이 포트 8080사용하고 잇어서 겹쳐서 안되는것, ok누르고
+다시 더블클릭
+새로 뜬 창에 http/1.1 옆에 8080을 확인할 수 잇음
+클릭해서 9090enter 해서 변경해줌
+뜬창 x버튼 눌러서 save눌러서 변경완료
+(server.xml코드 수정하는것과 같은 방법)
+다시 우클릭 start 누르면 started로 바뀜
+**주의 이렇게 수정한 파일은 이클립스가 복사해간 폴더와 파일임 원본은 8080그대로임
+
+
+
+메소드, 인터페이스 등 컬러 바꾸고 싶으면 java -editor - syntax coloring
+
+
+window - web browser - chrome으로 변경
+
+
+
+***파일첨부 servlet다운로드 하기
+http://servlets.com/ - 좌측에 COS file upload library - 밑 다운로드
+- 압축 풀기 - lib폴더에 cos.jar파일 GDJ45 jar폴더에 옮기기
+
+
+****JSTL
+https://tomcat.apache.org/
+다운로드 taglibs
+맨밑에 jar 파일에
+impl, spec 두개 다운
+jar파일로 옮겨두기
+
+
+
+
+****DBCP
+https://commons.apache.org/
+아래로 조금 내려서 DBCP클릭
+Releases - 다운로드클릭
+Apache Commons DBCP 2.9.0 for JDBC 4.2 on Java 8에서
+Binaries - commons-dbcp2-2.9.0-bin.zip다운로드
+압축풀기
+기본 자르 파일 jar폴더에 옮기기
+
+패키기 - 우클릭 - export - war내보내기-export source file무조건 체크하고 피니시 - runtime은 안찍어도 됨
+브라우저 - 바탕화면
+
+
+
+****spring
+
+현재 이클립스 4.19버전임
+spring.io 홈페이지 - projects - development tools - spring tool4 클릭
+쭉내려서  looking for spring tool suite3 찾기
+-  Spring Tool Suite 3 wiki  클릭
+- Latest STS3 Downloads아래
+이클립스 버전이 나와있음
+4.19로 사용
+-윈도우 (1번째꺼) 다운(개오래 걸림) 
+선생님 폴더에서 jar도 가져왔음
+다운 받은 zip풀기
+(오류 없으려면 반디집으로 풀기)
+installer - sts-bundle
+
+cmd
+cd C:\GDJ45\installer\jar
+C:\GDJ45\installer\jar> java -jar lombok-1.18.22.jar
+나온 롬복 설치창에 C:\GDJ45\installer\sts-bundle\sts3.9.18.RELEASE\STS.exe 선택 후 설치
+springstudy폴더 만들어서 workspace로 선택
+
+
+window - preferneces - server - runtime environments 에서 이미 있는 vmware ..어쩌구 remove로 지움
+add - 톰탯 9.0 next - 브라우저버튼 - 압축푼 톰캣 선택
+밑에 server탭에서 new어쩌구 눌러서 피니쉬
+
+
+window - preferneces - run/debug 에서 limit console output해제
+원하는 테마, 글꼴, 
+genneral - workspace - text file encodin other - utf-8(인코딩)
+web-cssfile, htmlfile, jspfile - utf-8로 변경(인코딩)
+Window - Web Browser - Chrome
+-----------------------------
+
+
+Spring Boot
+
+1. Tool
+  1) STS4 사용 (수업에서 사용하던 이클립스 2021-03월 기반 버전은 STS-4.10.0)
+    (공유폴더     - spring-tool-suite-4-4.10.0.RELEASE-e4.19.0-win32.win32.x86_64.zip)
+    (다운로드링크 - https://github.com/spring-projects/sts4/wiki/Previous-Versions)
+  2) Lombok 사용시 SpringToolSuite4.exe 대상으로 lombok 설치
+    cmd
+    cd C:\GDJ45\installer\jar
+    C:\GDJ45\installer\jar> java -jar lombok-1.18.22.jar
+    나온 롬복 설치창에 C:\GDJ45\installer\sts-4.10.0.RELEASE\SpringToolSuite4.exe 선택 후 설치
+  3) springbootstudy 디렉터리를 workspace로 설정
+  4) [Help] - [Eclipse Marketplace] - "java web" 검색
+     - "Eclipse Enterprise Java and Web Developer Tools 3.21" 설치
+  5) [Window] - [Preferences]
+    (1) 테마/글꼴
+    (2) genneral - workspace - text file encodin other - utf-8(인코딩)
+         web-cssfile, htmlfile, jspfile - utf-8로 변경(인코딩)
+    (3) window - preferneces - run/debug 에서 limit console output해제
+
+
+2. Project
+  1) start.spring.io에서 프로젝트를 만들고 STS4는 해당 프로젝트를 import함
+    Project - Maven Project
+    Language - Java
+    Spring Boot - 2.6.8
+    Project Metadata
+    - Group    - com.goodee
+    - Artifact - ex01
+    - Name     - ex01
+    Packing    - War
+    Java       - 11
+    Dependencies
+    - Spring Web : spring-boot-starter, spring-boot-starter-tomcat, jackson, spring-core, spring-mvc
+    - Lombok
+    - Oracle Driver
+    - MyBatis Framework
+  2) Generate 버튼 눌러서 프로젝트 다운로드(ex01.zip)
+  3) ex01.zip 압축 풀어서 springboot 디렉터리에 가져다 놓기
+  4) SprintToolSuite4.exe 실행하고 ex01 프로젝트 import 하기
+    [Maven] - [Existing Maven Projects]
+
+
+3. Project Setting
+  1) web 폴더 만들기
+    src/main/webapp/resources
+    src/main/webapp/WEB-INF/
+  2) application.properties 작업하기
+    src/main/resources/application.properties
+      # server port 변경
+      server.port=9999
+      # servlet-context.xml
+      spring.web.resources.static-locations=/resources/**
+      spring.mvc.view.prefix=/WEB-INF/
+      spring.mvc.view.suffix=.jsp
+      # web.xml
+      server.servlet.encoding.charset=UTF-8
+      server.servlet.encoding.enabled=true
+      server.servlet.encoding.force=true
+      # session(1800초==30분)
+      server.servlet.session.timeout=1800
+      # db.properties
+      spring.datasource.driver-class-name=oracle.jdbc.OracleDriver
+      spring.datasource.url=jdbc:oracle:thin:@localhost:1521:xe
+      spring.datasource.username=scott
+      spring.datasource.password=1111
+      # mybatis
+      mybatis.config-location=mybatis/config/mybatis-config.xml
+      mybatis.mapper-locations=mybatis/mapper/*.xml
+  3) pom.xml 작업하기
+    (1) tomcat-embed-jasper
+	<!-- https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-jasper -->
+	<dependency>
+	    <groupId>org.apache.tomcat.embed</groupId>
+	    <artifactId>tomcat-embed-jasper</artifactId>
+	</dependency>
+    (2) jstl
+	<!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->
+	<dependency>
+	    <groupId>javax.servlet</groupId>
+	    <artifactId>jstl</artifactId>
+	</dependency>
+  4) JSP 추가
+    src/main/webapp/WEB-INF/index.jsp
+  5) Controller 생성
+    src/main/java
+      ㄴcom.goodee.ex01.controller
+        ㄴHomeController.java
+
+
+4. Project Run
+  1) [Run As] - [Spring Boot App]
+  2) 브라우저 열고 http://localhost:9999 입력 (http://localhost:9999/ex01 아님을 주의)
